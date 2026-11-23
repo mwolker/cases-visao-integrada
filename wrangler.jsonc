@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cases-visao-integrada",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "cases.visaointegrada.net.br", "custom_domain": true }
+  ]
+}
