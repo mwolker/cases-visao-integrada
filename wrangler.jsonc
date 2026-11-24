@@ -2,10 +2,19 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "cases-visao-integrada",
   "compatibility_date": "2026-11-01",
+  // O Worker só atende /api/*; todo o resto é servido direto dos arquivos de site/.
+  "main": "src/index.js",
   "assets": {
     "directory": "./site",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
   },
+  // Envio do aviso de questionário respondido (Cloudflare Email Routing).
+  // O destinatário fica no segredo AVISO_PARA, fora do repositório público.
+  "send_email": [
+    { "name": "AVISO_EMAIL" }
+  ],
   "workers_dev": false,
   "preview_urls": false,
   "routes": [
