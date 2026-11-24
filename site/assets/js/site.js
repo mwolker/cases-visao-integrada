@@ -124,8 +124,9 @@
     if (title) title.focus();
   }
 
-  function wireDialog(dialog) {
+  function wireDialog(dialog, options) {
     if (!dialog) return;
+    var closeOnBackdrop = !(options && options.fecharNoFundo === false);
     dialog.addEventListener('close', function () {
       var opener = openers.get(dialog);
       openers.delete(dialog);
@@ -134,7 +135,7 @@
       }
     });
     dialog.addEventListener('click', function (e) {
-      if (e.target === dialog) dialog.close(); // clique fora do conteúdo (fundo)
+      if (closeOnBackdrop && e.target === dialog) dialog.close(); // clique fora do conteúdo (fundo)
     });
     Array.prototype.forEach.call(dialog.querySelectorAll('[data-fechar]'), function (b) {
       b.addEventListener('click', function () { dialog.close(); });
@@ -260,18 +261,33 @@
   });
 
   /* ---------- Atalhos de teclado ---------- */
+  /* Páginas internas (questionário, painel) não têm todas as seções da página inicial:
+     nesses casos o atalho leva ao destino equivalente ou abre a página inicial. */
+  function focusMain() {
+    if (focusSection('inicio')) return;
+    var h1 = document.querySelector('main h1');
+    var target = h1 || document.getElementById('conteudo');
+    if (!target) return;
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: 'start' });
+  }
+  function focusOrGoHome(id) {
+    if (!focusSection(id)) window.location.href = '/#' + id;
+  }
+
   var SHORTCUTS = [
-    { key: '1', label: 'Ir para o conteúdo principal', run: function () { focusSection('inicio'); } },
+    { key: '1', label: 'Ir para o conteúdo principal', run: focusMain },
     { key: '2', label: 'Ir para o menu de navegação', run: function () {
         if (menuIsCollapsed()) { setMenu(true); }
         var first = document.querySelector('.nav-list a');
         if (first) first.focus();
       } },
-    { key: '3', label: 'Ir para os cases', run: function () { focusSection('cases'); } },
+    { key: '3', label: 'Ir para os cases', run: function () { focusOrGoHome('cases'); } },
     { key: '4', label: 'Ir para o rodapé', run: function () { var f = document.getElementById('rodape'); if (f) { f.focus({ preventScroll: true }); f.scrollIntoView({ block: 'end' }); } } },
     { key: '5', label: 'Abrir as preferências de leitura', run: function () { openDialog(panel, btnA11y); } },
     { key: '6', label: 'Ativar ou desativar o alto contraste', run: function () { toggleContrast(); } },
-    { key: '7', label: 'Ir para a declaração de acessibilidade', run: function () { focusSection('declaracao'); } },
+    { key: '7', label: 'Ir para a declaração de acessibilidade', run: function () { focusOrGoHome('declaracao'); } },
     { key: '0', label: 'Mostrar esta lista de atalhos', run: function () { openDialog(shortcutsDialog, document.activeElement); } }
   ];
 
@@ -323,6 +339,21 @@
     if (open && sc.key !== '5' && sc.key !== '0' && sc.key !== '6') open.close();
     sc.run();
   });
+
+  /* ---------- Interface para os scripts das páginas internas ----------
+     Permite reaproveitar os diálogos (foco preso e devolvido a quem abriu),
+     a região de anúncios e trocar o destino de um atalho na página atual. */
+  window.VI = {
+    anunciar: announce,
+    abrirDialogo: openDialog,
+    prepararDialogo: wireDialog,
+    definirAtalho: function (key, label, run) {
+      SHORTCUTS.forEach(function (s) {
+        if (s.key === key) { s.label = label; s.run = run; }
+      });
+      renderShortcuts();
+    }
+  };
 
   /* ---------- Início ---------- */
   apply();

@@ -1,0 +1,173 @@
+/* ==========================================================================
+   Questionário de briefing e painel · estilos complementares
+   Usa os mesmos tokens de site.css (cores, fontes, espaçamentos, foco).
+   Contraste mínimo 7:1 para texto e 3:1 para bordas de campos, em todos os temas.
+   ========================================================================== */
+
+/* ---------- Tokens de erro e situação (complementam os temas de site.css) ---------- */
+:root { --erro: #8a0010; --erro-soft: #fde3e5; --campo-borda: #646b82; }
+html[data-tema="escuro"] { --erro: #ffb3ba; --erro-soft: #3a0d14; --campo-borda: #8a91ad; }
+@media (prefers-color-scheme: dark) {
+  html[data-tema="auto"] { --erro: #ffb3ba; --erro-soft: #3a0d14; --campo-borda: #8a91ad; }
+}
+html[data-tema="contraste-escuro"] { --erro: #ffff00; --erro-soft: #000000; --campo-borda: #ffffff; }
+html[data-tema="contraste-claro"] { --erro: #b00000; --erro-soft: #ffffff; --campo-borda: #000000; }
+
+/* ---------- Estrutura das páginas internas ---------- */
+.pagina { padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); }
+.pagina-estreita { width: min(100% - 2.5rem, 54rem); margin-inline: auto; }
+.pagina h1 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); }
+.pagina .lead { margin-bottom: 1.5rem; }
+.carregando { color: var(--text-muted); }
+.caixa {
+  background: var(--surface); border: 1px solid var(--border-soft); border-radius: 1.25rem;
+  padding: clamp(1.25rem, 0.75rem + 2vw, 2rem); box-shadow: var(--shadow); margin-bottom: 1.5rem;
+}
+.caixa > :last-child { margin-bottom: 0; }
+.caixa > h2 { font-size: 1.25rem; }
+.respostas-titulo { margin-top: 2rem; }
+
+/* ---------- Progresso e índice ---------- */
+.progresso { margin: 0 0 0.5rem; font-weight: 700; }
+.barra { height: 0.75rem; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; margin-bottom: 1.25rem; }
+.barra > span { display: block; height: 100%; width: 0; background: var(--accent); }
+html.pref-reduzirMovimento .barra > span { transition: none; }
+.indice ol { margin: 0; padding-inline-start: 1.5rem; display: grid; gap: 0.25rem; }
+.indice li { max-inline-size: none; }
+.indice a { display: inline-flex; flex-wrap: wrap; gap: 0 0.5em; min-height: 2.75rem; align-items: center; font-weight: 700; }
+.indice .contagem { font-weight: 400; color: var(--text-muted); }
+.indice h2 { font-size: 1.25rem; }
+.salvamento { color: var(--text-muted); margin: 0.75rem 0 0; }
+
+/* ---------- Seções do formulário ---------- */
+.secao-form { margin-top: 2.5rem; }
+.secao-form > h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); scroll-margin-top: 1rem; }
+.secao-form > .descricao { color: var(--text-muted); }
+.pergunta {
+  background: var(--surface); border: 1px solid var(--border-soft); border-radius: 1rem;
+  padding: 1.25rem 1.25rem 1.5rem; margin: 0 0 1rem; min-width: 0;
+}
+.pergunta.tem-erro { border: 2px solid var(--erro); }
+fieldset.pergunta legend, .pergunta > label {
+  display: block; font-weight: 700; font-size: 1.125rem; padding: 0; margin-bottom: 0.5rem; max-inline-size: var(--measure);
+}
+fieldset.pergunta legend { float: left; width: 100%; }
+fieldset.pergunta legend ~ * { clear: both; }
+.obrigatoria { font-weight: 400; color: var(--text-muted); }
+.pergunta .hint { margin: 0 0 0.75rem; }
+
+/* Campos de texto */
+.campo-texto, .campo-area, .campo-select {
+  display: block; width: 100%; max-width: 100%;
+  font: inherit; letter-spacing: inherit; word-spacing: inherit; line-height: var(--lh);
+  color: var(--text); background: var(--surface);
+  border: 2px solid var(--campo-borda); border-radius: var(--radius-sm);
+  padding: 0.625rem 0.875rem; min-height: 2.75rem;
+}
+.campo-area { min-height: 8rem; resize: vertical; }
+.campo-texto[aria-invalid="true"], .campo-area[aria-invalid="true"] { border-color: var(--erro); border-width: 3px; }
+.campo-texto::placeholder, .campo-area::placeholder { color: var(--text-muted); opacity: 1; }
+.campo-limite { max-width: 34rem; }
+
+/* Opções (radio e checkbox nativos, alvo de toque amplo) */
+.lista-opcoes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
+.lista-opcoes li { max-inline-size: none; }
+.opcao {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.75rem; align-items: start;
+  padding: 0.5rem 0.75rem; min-height: 2.75rem; border-radius: var(--radius-sm); cursor: pointer;
+  border: 2px solid transparent;
+}
+.opcao:hover { background: var(--surface-2); }
+.opcao input { width: 1.5rem; height: 1.5rem; margin: 0.15rem 0 0; accent-color: var(--accent); cursor: pointer; }
+.opcao:has(input:checked) { border-color: var(--border); background: var(--surface-2); font-weight: 700; }
+html[data-tema^="contraste"] .opcao:has(input:checked) { outline: 2px solid var(--accent); }
+.outro { margin: 0.75rem 0 0; padding-inline-start: 2.25rem; }
+.outro label { display: block; font-weight: 700; margin-bottom: 0.25rem; }
+
+/* Erros */
+.msg-erro { color: var(--erro); font-weight: 700; margin: 0 0 0.5rem; display: flex; gap: 0.5em; align-items: flex-start; }
+.msg-erro::before { content: "!"; content: "!" / ""; flex: none; display: inline-grid; place-items: center; width: 1.4em; height: 1.4em; border-radius: 50%; background: var(--erro); color: var(--surface); font-weight: 700; }
+.resumo-erros { border: 3px solid var(--erro); background: var(--erro-soft); border-radius: 1rem; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+.resumo-erros h2 { font-size: 1.375rem; color: var(--erro); }
+.resumo-erros a { color: var(--erro); font-weight: 700; }
+.resumo-erros ul { margin-bottom: 0; }
+
+/* Avisos */
+.aviso { border: 2px solid var(--border); border-radius: 1rem; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; background: var(--surface); }
+.aviso-ok { border-color: var(--ok); background: var(--ok-soft); }
+.aviso-ok h2, .aviso-ok strong { color: var(--ok); }
+.aviso > :last-child { margin-bottom: 0; }
+
+/* Barra de ações */
+.acoes { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 1.5rem; }
+.acoes-fim { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-soft); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.65; cursor: not-allowed; transform: none; }
+.btn-perigo { background: transparent; color: var(--erro); border-color: var(--erro); }
+.btn-perigo:hover { background: var(--erro-soft); text-decoration: underline; }
+.btn-pequeno { min-height: 2.75rem; padding: 0.375em 0.9em; font-size: 1rem; }
+
+/* ---------- Resumo das respostas (somente leitura e impressão) ---------- */
+.respostas-lista { margin: 0 0 2rem; }
+.respostas-lista dt { font-weight: 700; margin-top: 1.25rem; }
+.respostas-lista dd { margin: 0.25rem 0 0; white-space: pre-wrap; }
+.respostas-lista .sem-resposta { color: var(--text-muted); font-style: italic; }
+.respostas-secao + .respostas-secao { border-top: 1px solid var(--border-soft); padding-top: 1.5rem; }
+
+/* ---------- Painel ---------- */
+.painel-topo { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.painel-topo p { margin: 0; color: var(--text-muted); }
+.abas { margin-bottom: 2rem; }
+.abas ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.abas a {
+  display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.375em 1em;
+  border: 2px solid var(--border); border-radius: 999px; font-weight: 700; color: var(--text); text-decoration: none;
+}
+.abas a:hover { text-decoration: underline; background: var(--surface-2); }
+.abas a[aria-current="page"] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); text-decoration: underline; }
+@media (forced-colors: active) { .abas a[aria-current="page"] { forced-color-adjust: none; background: Highlight; color: HighlightText; } }
+
+.lista-cartoes { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.lista-cartoes > li { max-inline-size: none; background: var(--surface); border: 1px solid var(--border-soft); border-radius: 1rem; padding: 1.25rem; }
+.lista-cartoes h3, .lista-cartoes h4 { margin-bottom: 0.25rem; font-size: 1.25rem; }
+.lista-cartoes .meta { margin: 0.5rem 0; }
+.lista-cartoes .acoes { margin-top: 0.75rem; gap: 0.5rem; }
+.badge-pendente { color: var(--text); background: var(--surface-2); }
+.badge-oculta { color: var(--text-muted); background: var(--surface-2); border-style: dashed; }
+.cartao-oculto { border-style: dashed !important; }
+
+.secao-admin { margin-block: 2.5rem; }
+.secao-admin > .cabecalho { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; justify-content: space-between; margin-bottom: 0.75rem; }
+.secao-admin > .cabecalho h3 { font-size: 1.5rem; margin: 0; }
+.ordem-num { color: var(--text-muted); font-weight: 700; }
+.pergunta-admin-texto { font-weight: 700; margin: 0.25rem 0; }
+.etiquetas { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0.5rem 0 0; }
+.etiquetas li { max-inline-size: none; }
+
+.link-gerado { display: grid; gap: 0.5rem; }
+.link-gerado .campo-texto { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.95rem; }
+
+/* Formulários do painel */
+.form-grid { display: grid; gap: 1.25rem; }
+.campo label, .campo > .rotulo { display: block; font-weight: 700; margin-bottom: 0.375rem; }
+.campo .hint { margin-top: 0; }
+.grupo-radio { border: 0; padding: 0; margin: 0; min-width: 0; }
+.grupo-radio legend { font-weight: 700; padding: 0; margin-bottom: 0.375rem; }
+.dialog-form { width: min(100% - 1rem, 44rem); border-radius: 1.25rem; margin: auto; max-height: calc(100dvh - 1rem); }
+.dialog-form .panel-body { padding-top: 1rem; }
+@media (max-width: 36em) { .dialog-form { width: 100%; max-height: 100dvh; border-radius: 0; } }
+
+/* Login */
+.login { max-width: 30rem; }
+
+/* ---------- Impressão ---------- */
+@media print {
+  .indice, .barra, .progresso, .acoes, .salvamento, .abas, .painel-topo .btn, .nao-imprimir { display: none !important; }
+  .pergunta, .caixa, .lista-cartoes > li { box-shadow: none; border: 1px solid #000; break-inside: avoid; }
+  .respostas-lista dt { break-after: avoid; }
+}
+
+@media (forced-colors: active) {
+  .pergunta, .caixa, .aviso, .resumo-erros, .lista-cartoes > li, .campo-texto, .campo-area, .campo-select { border: 2px solid CanvasText; }
+  .msg-erro::before { forced-color-adjust: none; background: CanvasText; color: Canvas; }
+  .barra > span { background: Highlight; }
+}

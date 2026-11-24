@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel do questionário · Visão Integrada</title>
+  <meta name="description" content="Área restrita para administrar o questionário de briefing.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f6fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d18" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="/assets/img/favicon-64.png">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="/assets/js/prefs-init.js"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=2026-11-23">
+  <link rel="stylesheet" href="/assets/css/briefing.css?v=2026-11-23">
+</head>
+<body>
+
+<div class="skip-links">
+  <a href="#conteudo">Pular para o conteúdo principal</a>
+  <a href="#menu-principal">Pular para o menu</a>
+  <a href="#rodape">Pular para o rodapé</a>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="/assets/img/emblema-176.webp" width="88" height="88" alt="">
+      <span class="brand-text">
+        <span class="brand-name">Visão Integrada</span>
+        <span class="brand-sub">Painel do questionário</span>
+      </span>
+      <span class="sr-only">, ir para a página inicial</span>
+    </a>
+
+    <nav class="site-nav" id="menu-principal" aria-label="Principal" tabindex="-1">
+      <button type="button" class="btn btn-secondary menu-toggle" aria-expanded="false" aria-controls="lista-menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" fill="none"/></svg>
+        Menu
+      </button>
+      <ul class="nav-list" id="lista-menu" role="list">
+        <li><a href="/">Página inicial</a></li>
+        <li><a href="/#cases">Cases</a></li>
+        <li><a href="/#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="btn btn-a11y" id="btn-acessibilidade" aria-haspopup="dialog" aria-controls="painel-acessibilidade" aria-keyshortcuts="Alt+5">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="4.5" r="2" fill="currentColor"/><path d="M4.5 8.5 12 10l7.5-1.5M12 10v4.5m0 0-3.5 6.5m3.5-6.5 3.5 6.5" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      Acessibilidade
+    </button>
+  </div>
+</header>
+
+<main id="conteudo" tabindex="-1">
+  <div class="pagina container">
+    <h1 id="titulo-pagina" tabindex="-1">Painel do questionário</h1>
+    <div class="resumo-erros" role="alert" id="alerta-painel" hidden></div>
+    <div id="area-painel"><p class="carregando">Este painel precisa de JavaScript para carregar.</p><noscript><p class="aviso">Esta página precisa de JavaScript ativado no navegador para funcionar. Se preferir, escreva para <a href="mailto:contato@visaointegrada.net.br">contato@visaointegrada.net.br</a>.</p></noscript></div>
+  </div>
+</main>
+
+<footer class="site-footer" id="rodape" tabindex="-1">
+  <div class="container footer-inner">
+    <p>© 2026 Wolker Soluções em Informática · Maurício Wolker</p>
+    <ul class="footer-links" role="list">
+      <li><a href="/#declaracao">Declaração de acessibilidade</a></li>
+      <li><button type="button" class="link-button" data-abrir-atalhos aria-haspopup="dialog" aria-keyshortcuts="Alt+0">Atalhos de teclado</button></li>
+      <li><a href="#conteudo">Voltar ao início desta página</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- ===================== Painel de acessibilidade ===================== -->
+<dialog class="panel" id="painel-acessibilidade" aria-labelledby="titulo-painel" aria-describedby="desc-painel">
+  <div class="panel-inner">
+    <div class="panel-head">
+      <div>
+        <h2 id="titulo-painel" tabindex="-1">Preferências de leitura</h2>
+        <p id="desc-painel">As mudanças são aplicadas na hora e ficam salvas neste navegador.</p>
+      </div>
+      <button type="button" class="btn btn-secondary" data-fechar aria-label="Fechar preferências de leitura">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <form class="panel-body" id="form-prefs">
+      <section aria-labelledby="sec-texto">
+        <h3 id="sec-texto">Texto</h3>
+        <fieldset class="opt-group">
+          <legend>Tamanho do texto</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="tamanho" value="100"><span>100%</span></label>
+            <label class="chip"><input type="radio" name="tamanho" value="125"><span>125%</span></label>
+            <label class="chip"><input type="radio" name="tamanho" value="150"><span>150%</span></label>
+            <label class="chip"><input type="radio" name="tamanho" value="175"><span>175%</span></label>
+            <label class="chip"><input type="radio" name="tamanho" value="200"><span>200%</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="opt-group">
+          <legend>Fonte</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="fonte" value="padrao"><span class="ff-padrao">Atkinson Hyperlegible (padrão)</span></label>
+            <label class="chip"><input type="radio" name="fonte" value="sistema"><span class="ff-sistema">Fonte do sistema</span></label>
+            <label class="chip"><input type="radio" name="fonte" value="lexend"><span class="ff-lexend">Lexend</span></label>
+            <label class="chip"><input type="radio" name="fonte" value="opendyslexic"><span class="ff-dys">OpenDyslexic</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="opt-group">
+          <legend>Largura das linhas de texto</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="largura" value="estreita"><span>Estreita</span></label>
+            <label class="chip"><input type="radio" name="largura" value="padrao"><span>Confortável (padrão)</span></label>
+            <label class="chip"><input type="radio" name="largura" value="larga"><span>Larga</span></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section aria-labelledby="sec-espaco">
+        <h3 id="sec-espaco">Espaçamento</h3>
+        <fieldset class="opt-group">
+          <legend>Entre linhas e parágrafos</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="linha" value="padrao"><span>Padrão</span></label>
+            <label class="chip"><input type="radio" name="linha" value="ampla"><span>Amplo</span></label>
+            <label class="chip"><input type="radio" name="linha" value="extra"><span>Extra</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="opt-group">
+          <legend>Entre letras</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="letras" value="padrao"><span>Padrão</span></label>
+            <label class="chip"><input type="radio" name="letras" value="amplo"><span>Amplo</span></label>
+            <label class="chip"><input type="radio" name="letras" value="extra"><span>Extra</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="opt-group">
+          <legend>Entre palavras</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="palavras" value="padrao"><span>Padrão</span></label>
+            <label class="chip"><input type="radio" name="palavras" value="amplo"><span>Amplo</span></label>
+            <label class="chip"><input type="radio" name="palavras" value="extra"><span>Extra</span></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section aria-labelledby="sec-cores">
+        <h3 id="sec-cores">Cores e contraste</h3>
+        <fieldset class="opt-group">
+          <legend>Tema</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="tema" value="auto"><span>Igual ao sistema</span></label>
+            <label class="chip"><input type="radio" name="tema" value="claro"><span>Claro</span></label>
+            <label class="chip"><input type="radio" name="tema" value="escuro"><span>Escuro</span></label>
+            <label class="chip"><input type="radio" name="tema" value="contraste-escuro"><span>Alto contraste escuro</span></label>
+            <label class="chip"><input type="radio" name="tema" value="contraste-claro"><span>Alto contraste claro</span></label>
+          </div>
+        </fieldset>
+        <div class="check">
+          <input type="checkbox" id="pref-destacarLinks" name="destacarLinks" aria-describedby="hint-links">
+          <label for="pref-destacarLinks">Destacar links</label>
+          <p class="hint" id="hint-links">Sublinha todos os links e aplica um fundo para encontrá-los mais rápido.</p>
+        </div>
+        <div class="check">
+          <input type="checkbox" id="pref-semEfeitos" name="semEfeitos" aria-describedby="hint-efeitos">
+          <label for="pref-semEfeitos">Remover efeitos decorativos</label>
+          <p class="hint" id="hint-efeitos">Retira gradientes, sombras e ilustrações para um visual mais limpo.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="sec-nav">
+        <h3 id="sec-nav">Navegação e leitura</h3>
+        <div class="check">
+          <input type="checkbox" id="pref-focoAmpliado" name="focoAmpliado" aria-describedby="hint-foco">
+          <label for="pref-focoAmpliado">Indicador de foco ampliado</label>
+          <p class="hint" id="hint-foco">Deixa o contorno do elemento em foco mais grosso e com halo.</p>
+        </div>
+        <div class="check">
+          <input type="checkbox" id="pref-reduzirMovimento" name="reduzirMovimento" aria-describedby="hint-movimento">
+          <label for="pref-reduzirMovimento">Reduzir animações</label>
+          <p class="hint" id="hint-movimento">Desliga transições e rolagem suave. Começa marcado se o seu sistema já pede menos movimento.</p>
+        </div>
+        <div class="check">
+          <input type="checkbox" id="pref-cursorAmpliado" name="cursorAmpliado" aria-describedby="hint-cursor">
+          <label for="pref-cursorAmpliado">Cursor do mouse ampliado</label>
+          <p class="hint" id="hint-cursor">Usa um ponteiro maior, com contorno branco.</p>
+        </div>
+        <div class="check">
+          <input type="checkbox" id="pref-regua" name="regua" aria-describedby="hint-regua">
+          <label for="pref-regua">Régua de leitura</label>
+          <p class="hint" id="hint-regua">Escurece a tela acima e abaixo de uma faixa que acompanha o mouse e o foco do teclado.</p>
+        </div>
+        <div class="check">
+          <input type="checkbox" id="pref-atalhos" name="atalhos" aria-describedby="hint-atalhos">
+          <label for="pref-atalhos">Atalhos de teclado</label>
+          <p class="hint" id="hint-atalhos">Ativa as combinações com <kbd>Alt</kbd> + número. Desative se elas conflitarem com outro programa.</p>
+        </div>
+        <p><button type="button" class="link-button" data-abrir-atalhos aria-haspopup="dialog">Ver lista de atalhos</button></p>
+      </section>
+      <div class="sr-only" role="status" data-anunciador></div>
+    </form>
+
+    <div class="panel-foot">
+      <button type="button" class="btn btn-secondary" id="btn-restaurar">Restaurar padrões</button>
+      <button type="button" class="btn btn-primary" data-fechar>Concluir</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- ===================== Diálogo de atalhos ===================== -->
+<dialog class="dialog-small" id="dialogo-atalhos" aria-labelledby="titulo-atalhos">
+  <div class="panel-inner">
+    <div class="panel-head">
+      <h2 id="titulo-atalhos" tabindex="-1">Atalhos de teclado</h2>
+      <button type="button" class="btn btn-secondary" data-fechar aria-label="Fechar atalhos de teclado">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="panel-body">
+      <table>
+        <caption class="sr-only">Atalhos disponíveis nesta página</caption>
+        <thead><tr><th scope="col">Teclas</th><th scope="col">Ação</th></tr></thead>
+        <tbody data-atalhos-tbody></tbody>
+      </table>
+      <p class="hint" data-status-atalhos></p>
+    </div>
+  </div>
+</dialog>
+
+<div class="ruler" aria-hidden="true"></div>
+<div class="sr-only" role="status" id="anunciador"></div>
+
+<dialog class="dialog-small" id="dialogo-confirmar" aria-labelledby="titulo-confirmar">
+  <div class="panel-inner">
+    <div class="panel-head">
+      <h2 id="titulo-confirmar" tabindex="-1">Confirmar</h2>
+    </div>
+    <div class="panel-body">
+      <p id="texto-confirmar"></p>
+    </div>
+    <div class="panel-foot">
+      <button type="button" class="btn btn-secondary" data-fechar>Cancelar</button>
+      <button type="button" class="btn btn-perigo" id="btn-confirmar-ok">Confirmar</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dialog-form" id="dialogo-secao" aria-labelledby="titulo-dialogo-secao">
+  <form class="panel-inner" id="form-secao" novalidate>
+    <div class="panel-head">
+      <h2 id="titulo-dialogo-secao" tabindex="-1">Nova seção</h2>
+    </div>
+    <div class="panel-body form-grid">
+      <div class="campo">
+        <label for="secao-titulo">Título da seção <span class="obrigatoria">(obrigatório)</span></label>
+        <input type="text" id="secao-titulo" class="campo-texto" maxlength="200" required autocomplete="off">
+      </div>
+      <div class="campo">
+        <label for="secao-descricao">Descrição</label>
+        <p class="hint" id="hint-secao-descricao">Opcional. Aparece logo abaixo do título da seção.</p>
+        <textarea id="secao-descricao" class="campo-area" rows="3" maxlength="2000" aria-describedby="hint-secao-descricao"></textarea>
+      </div>
+    </div>
+    <div class="panel-foot">
+      <button type="button" class="btn btn-secondary" data-fechar>Cancelar</button>
+      <button type="submit" class="btn btn-primary">Salvar seção</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="dialog-form" id="dialogo-pergunta" aria-labelledby="titulo-dialogo-pergunta">
+  <form class="panel-inner" id="form-pergunta" novalidate>
+    <div class="panel-head">
+      <h2 id="titulo-dialogo-pergunta" tabindex="-1">Nova pergunta</h2>
+    </div>
+    <div class="panel-body form-grid">
+      <div class="campo">
+        <label for="pergunta-texto">Texto da pergunta <span class="obrigatoria">(obrigatório)</span></label>
+        <textarea id="pergunta-texto" class="campo-area" rows="3" maxlength="1000" required></textarea>
+      </div>
+      <div class="campo">
+        <label for="pergunta-ajuda">Texto de ajuda</label>
+        <p class="hint" id="hint-pergunta-ajuda">Opcional. Aparece logo abaixo da pergunta, com um exemplo ou uma explicação.</p>
+        <textarea id="pergunta-ajuda" class="campo-area" rows="2" maxlength="2000" aria-describedby="hint-pergunta-ajuda"></textarea>
+      </div>
+      <div class="campo">
+        <label for="pergunta-secao">Seção</label>
+        <select id="pergunta-secao" class="campo-select"></select>
+      </div>
+      <fieldset class="grupo-radio">
+        <legend>Tipo de resposta</legend>
+        <ul class="lista-opcoes" role="list">
+          <li><label class="opcao" for="tipo-texto_curto"><input type="radio" name="pergunta-tipo" id="tipo-texto_curto" value="texto_curto"><span>Texto curto (uma linha)</span></label></li>
+          <li><label class="opcao" for="tipo-texto_longo"><input type="radio" name="pergunta-tipo" id="tipo-texto_longo" value="texto_longo"><span>Texto longo (várias linhas)</span></label></li>
+          <li><label class="opcao" for="tipo-escolha_unica"><input type="radio" name="pergunta-tipo" id="tipo-escolha_unica" value="escolha_unica"><span>Escolha única (o cliente marca uma opção)</span></label></li>
+          <li><label class="opcao" for="tipo-multipla_escolha"><input type="radio" name="pergunta-tipo" id="tipo-multipla_escolha" value="multipla_escolha"><span>Múltipla escolha (o cliente marca várias opções)</span></label></li>
+        </ul>
+      </fieldset>
+      <div class="campo" id="bloco-opcoes">
+        <label for="pergunta-opcoes">Opções de resposta</label>
+        <p class="hint" id="hint-pergunta-opcoes">Escreva uma opção por linha, na ordem em que devem aparecer.</p>
+        <textarea id="pergunta-opcoes" class="campo-area" rows="6" aria-describedby="hint-pergunta-opcoes"></textarea>
+      </div>
+      <div class="check" id="bloco-permite-outro">
+        <input type="checkbox" id="pergunta-outro" aria-describedby="hint-pergunta-outro">
+        <label for="pergunta-outro">Permitir "Outra resposta"</label>
+        <p class="hint" id="hint-pergunta-outro">Acrescenta um campo de texto para o cliente escrever uma resposta que não está na lista.</p>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="pergunta-obrigatoria" aria-describedby="hint-pergunta-obrigatoria">
+        <label for="pergunta-obrigatoria">Resposta obrigatória</label>
+        <p class="hint" id="hint-pergunta-obrigatoria">O cliente só consegue enviar o questionário depois de responder.</p>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="pergunta-ativa" aria-describedby="hint-pergunta-ativa">
+        <label for="pergunta-ativa">Visível para os clientes</label>
+        <p class="hint" id="hint-pergunta-ativa">Desmarque para ocultar a pergunta sem excluí-la.</p>
+      </div>
+    </div>
+    <div class="panel-foot">
+      <button type="button" class="btn btn-secondary" data-fechar>Cancelar</button>
+      <button type="submit" class="btn btn-primary">Salvar pergunta</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="/assets/js/site.js?v=2026-11-23"></script>
+<script src="/assets/js/briefing-api.js?v=2026-11-23"></script>
+<script src="/assets/js/painel.js?v=2026-11-23"></script>
+</body>
+</html>
