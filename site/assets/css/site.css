@@ -338,6 +338,16 @@ html[data-tema^="contraste"] .hero h1 .grad, html.pref-semEfeitos .hero h1 .grad
 .hero-emblem { width: min(100%, 30rem); height: auto; filter: drop-shadow(0 20px 40px rgb(53 39 168 / 25%)); }
 @media (max-width: 63.99em) { .hero-emblem { width: min(70%, 18rem); } }
 html[data-tema^="contraste"] .hero-emblem, html.pref-semEfeitos .hero-emblem { filter: none; }
+/* Nos temas claros, o logo (fundo transparente, letras prateadas) ganha um disco escuro atrás,
+   para ficar igual ao modo escuro. Nos temas escuros o disco não é aplicado. */
+.hero-emblem { border-radius: 50%; padding: clamp(0.75rem, 3%, 1.25rem); background: radial-gradient(circle at 50% 45%, #1b2147 0%, #0a0d18 72%); }
+.brand-mark { border-radius: 50%; padding: 0.15rem; background: #0a0d18; }
+html[data-tema="escuro"] .hero-emblem, html[data-tema="contraste-escuro"] .hero-emblem,
+html[data-tema="escuro"] .brand-mark, html[data-tema="contraste-escuro"] .brand-mark { background: none; padding: 0; }
+@media (prefers-color-scheme: dark) {
+  html[data-tema="auto"] .hero-emblem, html[data-tema="auto"] .brand-mark { background: none; padding: 0; }
+}
+@media (forced-colors: active) { .hero-emblem, .brand-mark { forced-color-adjust: none; } }
 html.pref-semEfeitos .hero-bg, html[data-tema^="contraste"] .hero-bg { display: none; }
 html.pref-semEfeitos { --shadow: none; }
 
