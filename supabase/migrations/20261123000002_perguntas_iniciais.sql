@@ -52,7 +52,7 @@ join (values
   -- 50 · Gestão do site
   (50, 10, 'Quem vai publicar e atualizar o conteúdo depois que o site estiver pronto?', null, 'texto_longo', true, '[]', false),
   (50, 20, 'Quantas pessoas vão administrar o site?', null, 'texto_curto', false, '[]', false),
-  (50, 30, 'Essas pessoas usam algum destes recursos?', 'Marque todos os que se aplicam.', 'multipla_escolha', false, '["NVDA", "JAWS", "Narrador do Windows", "VoiceOver no Mac", "VoiceOver no iPhone", "TalkBack", "Ampliador ou lupa de tela", "Nenhum desses recursos"]', true),
+  (50, 30, 'Essas pessoas usam algum destes recursos?', 'Marque todos os que se aplicam.', 'multipla_escolha', false, '["NVDA", "JAWS", "Narrador do Windows", "VoiceOver no Mac", "VoiceOver no iPhone", "TalkBack", "Jieshuo", "Ampliador ou lupa de tela", "Nenhum desses recursos"]', true),
   (50, 40, 'Em que dispositivos elas costumam trabalhar?', 'Marque todos os que se aplicam.', 'multipla_escolha', false, '["Computador com Windows", "Mac", "Celular Android", "iPhone"]', true),
   (50, 50, 'Alguma delas já usou WordPress ou outro sistema de gerenciamento de sites? Como foi a experiência?', null, 'texto_longo', false, '[]', false),
   (50, 60, 'Vocês querem treinamento para usar o painel do site?', 'Conte também se preferem presencial ou remoto e em que formato querem o material de apoio: texto, áudio ou vídeo.', 'texto_longo', false, '[]', false),

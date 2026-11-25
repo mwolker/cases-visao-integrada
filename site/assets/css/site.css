@@ -576,3 +576,15 @@ html.pref-reduzirMovimento .btn-primary:hover { transform: none; }
   .card, .roadmap > li { break-inside: avoid; box-shadow: none; border: 1px solid #000; }
   a[href^="http"]::after, a[href^="mailto"]::after { content: " (" attr(href) ")"; }
 }
+
+/* ---------- Banner do canal no YouTube (seção Sobre) ---------- */
+.canal { margin-top: 2rem; }
+.canal h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+.canal-link { display: grid; gap: 0.75rem; text-decoration: none; color: var(--text); border: 1px solid var(--border-soft); border-radius: 1rem; padding: 0.75rem; background: var(--surface); }
+.canal-link img { display: block; width: 100%; height: auto; border-radius: 0.625rem; }
+.canal-link-texto { font-weight: 700; color: var(--link); text-decoration: underline; text-underline-offset: 0.2em; padding: 0 0.25rem 0.25rem; }
+.canal-link:hover { border-color: var(--border); }
+.canal-link:hover .canal-link-texto { text-decoration-thickness: 0.15em; }
+html[data-tema^="contraste"] .canal-link { border: 2px solid var(--border); }
+.principles > .principio-destaque { grid-column: 1 / -1; }
+.principles > .principio-destaque p { max-inline-size: var(--measure); }
