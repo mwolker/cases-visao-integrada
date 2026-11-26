@@ -11,7 +11,7 @@ from pathlib import Path
 import re
 
 # Mude a versão a cada publicação para que os navegadores baixem os arquivos novos.
-VERSAO = "2026-11-23"
+VERSAO = "2026-11-26"
 RAIZ = Path(__file__).resolve().parent.parent / "site"
 inicio = (RAIZ / "index.html").read_text(encoding="utf-8")
 
