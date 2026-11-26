@@ -4,6 +4,8 @@
   "compatibility_date": "2026-11-01",
   // O Worker só atende /api/*; todo o resto é servido direto dos arquivos de site/.
   "main": "src/index.js",
+  // Mantém as variáveis criadas no painel da Cloudflare a cada publicação automática.
+  "keep_vars": true,
   "assets": {
     "directory": "./site",
     "binding": "ASSETS",
