@@ -264,7 +264,7 @@ html[data-tamanho="175"], html[data-tamanho="200"] { scroll-padding-top: 1rem; }
 .btn-a11y { background: var(--accent); color: var(--accent-text); }
 .btn-a11y:hover { text-decoration: underline; }
 
-@media (max-width: 55.99em) {
+@media (max-width: 74.99em) {
   html.js .menu-toggle { display: inline-flex; }
   .brand { flex-basis: 100%; }
   @media (min-width: 36em) { .brand { flex-basis: auto; } }
@@ -588,3 +588,4 @@ html.pref-reduzirMovimento .btn-primary:hover { transform: none; }
 html[data-tema^="contraste"] .canal-link { border: 2px solid var(--border); }
 .principles > .principio-destaque { grid-column: 1 / -1; }
 .principles > .principio-destaque p { max-inline-size: var(--measure); }
+.principles.servicos { grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
