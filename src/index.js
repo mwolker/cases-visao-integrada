@@ -45,7 +45,8 @@ async function aviso(request, env) {
   if (!env.AVISO_SEGREDO || !env.AVISO_PARA || !env.AVISO_EMAIL) return texto(503, 'Aviso por e-mail não configurado.');
 
   const recebido = request.headers.get('X-Aviso-Segredo') || '';
-  if (!(await iguais(recebido, env.AVISO_SEGREDO))) return texto(401, 'Não autorizado.');
+  // trim(): ignora espaços ou quebras de linha colados por engano no painel da Cloudflare.
+  if (!(await iguais(recebido.trim(), String(env.AVISO_SEGREDO).trim()))) return texto(401, 'Não autorizado.');
 
   let dados;
   try { dados = await request.json(); } catch { return texto(400, 'Corpo inválido.'); }
@@ -76,7 +77,7 @@ async function aviso(request, env) {
 
   try {
     await env.AVISO_EMAIL.send({
-      to: env.AVISO_PARA,
+      to: String(env.AVISO_PARA).trim(),
       from: REMETENTE,
       subject: `Questionário respondido: ${quem}`,
       text: corpoTexto,

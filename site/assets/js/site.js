@@ -307,12 +307,30 @@
     announce(isHC ? 'Alto contraste desativado.' : 'Alto contraste ativado.');
   }
 
+  /* Monta a tabela de atalhos com elementos (sem innerHTML): nenhum texto vira HTML. */
+  function shortcutRow(keys, label) {
+    var tr = document.createElement('tr');
+    var tdKeys = document.createElement('td');
+    keys.forEach(function (k, i) {
+      if (i) tdKeys.appendChild(document.createTextNode(' + '));
+      var kbd = document.createElement('kbd');
+      kbd.textContent = k;
+      tdKeys.appendChild(kbd);
+    });
+    var tdLabel = document.createElement('td');
+    tdLabel.textContent = label;
+    tr.appendChild(tdKeys);
+    tr.appendChild(tdLabel);
+    return tr;
+  }
+
   function renderShortcuts() {
-    var rows = SHORTCUTS.map(function (s) {
-      return '<tr><td><kbd>Alt</kbd> + <kbd>' + s.key + '</kbd></td><td>' + s.label + '</td></tr>';
-    }).join('') +
-      '<tr><td><kbd>Esc</kbd></td><td>Fechar o painel, a lista de atalhos ou o menu aberto</td></tr>';
-    Array.prototype.forEach.call(document.querySelectorAll('[data-atalhos-tbody]'), function (tb) { tb.innerHTML = rows; });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-atalhos-tbody]'), function (tb) {
+      var frag = document.createDocumentFragment();
+      SHORTCUTS.forEach(function (s) { frag.appendChild(shortcutRow(['Alt', s.key], s.label)); });
+      frag.appendChild(shortcutRow(['Esc'], 'Fechar o painel, a lista de atalhos ou o menu aberto'));
+      tb.replaceChildren(frag);
+    });
     var st = document.querySelector('[data-status-atalhos]');
     if (st) st.textContent = prefs.atalhos
       ? 'Os atalhos estão ativados. No Firefox, use Alt + Shift + número; no Mac, Option + número.'
